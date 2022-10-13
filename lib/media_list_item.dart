@@ -40,7 +40,12 @@ class MediaListItem extends StatelessWidget {
                         child: new Text(
                           media.title,
                           style: new TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
+                            fontFamily: 'PTSans',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            //letterSpacing: 0.7,
+                            //fontSize: 16
+                          ),
                         ),
                       )
                     ],

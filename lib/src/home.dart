@@ -23,7 +23,14 @@ class _HomeState extends State<Home> {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.black,
-        title: new Text("Flutter Movie - 190292"),
+        title: new Text(
+          "Flutter Movie - 190292",
+          style: TextStyle(
+            fontFamily: 'Dirtchunk',
+            //fontWeight: FontWeight.bold,
+            //letterSpacing: 0.7
+          ),
+        ),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(

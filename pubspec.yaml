@@ -87,6 +87,28 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:   
+    - family: BebasNeue
+      fonts:
+      - asset: assets\Fonts\BebasNeue-Regular.ttf
+
+    - family: Headbears
+      fonts:
+      - asset: assets\Fonts\headbears-headbears-400.ttf
+
+    - family: Dirtchunk
+      fonts:
+      - asset: assets\Fonts\dirtchunk-dirtchunk-regular-400.ttf
+    - family: PTSans
+      fonts:
+      - asset: assets/fonts/PTSans-Bold.ttf
+      - asset: assets/fonts/PTSans-BoldItalic.ttf
+      - asset: assets/fonts/PTSans-Italic.ttf
+      - asset: assets/fonts/PTSans-Regular.ttf
+        style: italic
+        weight: 700
+        
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
