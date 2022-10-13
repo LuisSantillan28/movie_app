@@ -20,4 +20,12 @@ class HttpHandler {
     return getJson(uri).then(((data) =>
         data['results'].map<Media>((item) => new Media(item)).toList()));
   }
+
+  Future<List<Media>> fetchTV() {
+    var uri = new Uri.http(_baseUrl, "3/tv/popular",
+        {'api_key': API_KEY, 'language': _lenguaje, 'page': "1"});
+
+    return getJson(uri).then(((data) =>
+        data['results'].map<Media>((item) => new Media(item)).toList()));
+  }
 }
