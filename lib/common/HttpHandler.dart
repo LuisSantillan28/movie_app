@@ -6,7 +6,7 @@ import 'package:movie_app_190717/model/Media.dart';
 
 class HttpHandler {
   final String _baseUrl = "api.themoviedb.org";
-  final String _lenguaje = "es-ES";
+  final String _lenguaje = "es-MX";
 
   Future<dynamic> getJson(Uri uri) async {
     http.Response response = await http.get(uri);

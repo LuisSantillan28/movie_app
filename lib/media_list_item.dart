@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_190717/common/Util.dart';
 import 'package:movie_app_190717/model/Media.dart';
 
 class MediaListItem extends StatelessWidget {
@@ -14,7 +15,7 @@ class MediaListItem extends StatelessWidget {
               child: new Stack(
             children: [
               new FadeInImage.assetNetwork(
-                placeholder: "assets/placeholder.jpg",
+                placeholder: "/image/background/background7.png",
                 image: media.getBackDroupUrl(),
                 fit: BoxFit.cover,
                 width: double.infinity,
@@ -32,7 +33,7 @@ class MediaListItem extends StatelessWidget {
                       constraints: new BoxConstraints.expand(height: 55.0))),
               new Positioned(
                   left: 10.0,
-                  bottom: 30.0,
+                  bottom: 10.0,
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -40,14 +41,37 @@ class MediaListItem extends StatelessWidget {
                         child: new Text(
                           media.title,
                           style: new TextStyle(
-                            fontFamily: 'PTSans',
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Dirtchunk',
+                            //fontWeight: FontWeight.bold,
                             color: Colors.white,
                             //letterSpacing: 0.7,
                             //fontSize: 16
                           ),
                         ),
-                      )
+                      ),
+                      new Container(
+                        width: 250.0,
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: new Text(
+                          media.getGenres(),
+                          style: new TextStyle(
+                              color: Colors.white, fontFamily: 'PTSans'),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  )),
+              Positioned(
+                  right: 5.0,
+                  bottom: 10.0,
+                  child: new Column(
+                    children: <Widget>[
+                      new Row(children: <Widget>[
+                        new Text(media.voteAverage.toString()),
+                        new Container(width: 4.0),
+                        new Icon(Icons.star, color: Colors.amber)
+                      ])
                     ],
                   ))
             ],
