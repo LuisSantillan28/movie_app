@@ -1,3 +1,5 @@
+import 'package:movie_app_190717/common/MediaProvider.dart';
+
 import '../common/Util.dart';
 
 class Media {
@@ -13,22 +15,33 @@ class Media {
   String getPosterUrl() => getMediumPictureUrl(posterPath);
   String getBackDroupUrl() => getLargePictureUrl(backdropPath);
   String getGenres() => getGenreValues(genreIds);
+  int getReleaseYear() {
+    if (releaseDate == null || releaseDate == "") {
+      return 0;
+    }
+    return DateTime.parse(releaseDate).year;
+  }
 
-  factory Media(Map jsonMap) {
+  factory Media(Map jsonMap, MediaType mediaType) {
     try {
-      return new Media.deserialize(jsonMap);
+      return new Media.deserialize(jsonMap, mediaType);
     } catch (ex) {
       throw ex;
     }
   }
 
-  Media.deserialize(Map json)
+  Media.deserialize(Map json, MediaType mediaType)
       : id = json["id"].toInt(),
         voteAverage = json["vote_average"].toDouble(),
-        title = json["name"],
+        title = json[mediaType == MediaType.movie 
+        ? "title" 
+        : "name"],
         posterPath = json["poster_path"] ?? "",
         backdropPath = json["backdrop_path"] ?? "",
         overview = json["overview"],
-        releaseDate = json["first_air_date"],
+        releaseDate = json[
+            mediaType == MediaType.movie 
+            ? "release_date" 
+            : "first_air_date"],
         genreIds = json["genre_ids"].toList();
 }

@@ -1,5 +1,10 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:flutter/material.dart';
+//import 'package:movie_app_190717/common/MediaProvider.dart';
 import 'package:movie_app_190717/media_list.dart';
+import 'package:movie_app_190717/common/MediaProvider.dart';
+import 'package:movie_app_190717/model/Media.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,8 +23,14 @@ class _HomeState extends State<Home> {
   //   print(data);
   // }
 
+  final MediaProvider movieProvider = new MovieProvider();
+  final MediaProvider showProvider = new ShowProvider();
+
+  MediaType mediaType = MediaType.movie;
+
   @override
   Widget build(BuildContext context) {
+    // ignore: unnecessary_new
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.black,
@@ -41,21 +52,33 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      //drawer
+      // ignore: unnecessary_new
       drawer: new Drawer(
+        // ignore: unnecessary_new
         child: new ListView(
           children: <Widget>[
             new DrawerHeader(child: new Material()),
+            // ignore: unnecessary_new
             new ListTile(
               title: new Text("Peliculas"),
               trailing: new Icon(Icons.local_movies),
+              onTap: () {
+                _changeMediaType(MediaType.movie);
+                Navigator.of(context).pop; //ME quede
+              },
             ),
             new Divider(
               height: 5.0,
             ),
+            // ignore: unnecessary_new
             new ListTile(
-              title: new Text("Televisión"),
-              trailing: new Icon(Icons.live_tv),
-            ),
+                title: new Text("Televisión"),
+                trailing: new Icon(Icons.live_tv),
+                onTap: () {
+                  _changeMediaType(MediaType.tv);
+                  Navigator.of(context).pop;
+                }),
             new ListTile(
               title: new Text("Cerrar"),
               trailing: new Icon(Icons.close),
@@ -64,8 +87,10 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+
+      // ignore: unnecessary_new
       body: new PageView(
-        children: <Widget>[new MediaList()],
+        children: _getMediaList(),
       ),
       bottomNavigationBar: new BottomNavigationBar(
         items: _getFooterItems(),
@@ -76,17 +101,25 @@ class _HomeState extends State<Home> {
   List<BottomNavigationBarItem> _getFooterItems() {
     return [
       new BottomNavigationBarItem(
-        icon: new Icon(Icons.thumb_up),
-        label: ("Populares"),
-      ),
+          icon: Icon(Icons.thumb_up), label: ("Populares")),
       new BottomNavigationBarItem(
-        icon: new Icon(Icons.update),
-        label: ("Proximamente"),
-      ),
+          icon: Icon(Icons.update), label: ("Proximamente")),
       new BottomNavigationBarItem(
-        icon: new Icon(Icons.start),
-        label: ("Mejor Valoradas"),
-      ),
+          icon: Icon(Icons.star), label: ("Mejor Valoradas")),
     ];
+  }
+
+  void _changeMediaType(MediaType type) {
+    if (mediaType != type) {
+      setState(() {
+        mediaType = type;
+      });
+    }
+  }
+
+  List<Widget> _getMediaList() {
+    return (mediaType == MediaType.movie)
+        ? <Widget>[new MediaList(movieProvider)]
+        : <Widget>[new MediaList(showProvider)];
   }
 }

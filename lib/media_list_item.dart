@@ -67,13 +67,31 @@ class MediaListItem extends StatelessWidget {
                   bottom: 10.0,
                   child: new Column(
                     children: <Widget>[
-                      new Row(children: <Widget>[
-                        new Text(media.voteAverage.toString()),
-                        new Container(width: 4.0),
-                        new Icon(Icons.star, color: Colors.amber)
-                      ])
+                      new Row(
+                        children: <Widget>[
+                          new Text(media.voteAverage.toString()),
+                          new Container(width: 4.0),
+                          new Icon(Icons.star, color: Colors.amber),
+                        ],
+                      ),
+                      new Container(
+                        height: 4.0,
+                      ),
+                      new Row(
+                        children: <Widget>[
+                          new Text(media.getReleaseYear().toString()),
+                          new Container(
+                            width: 4.0,
+                          ),
+                          new Icon(
+                            Icons.date_range,
+                            color: Colors.white,
+                            size: 16,
+                          )
+                        ],
+                      )
                     ],
-                  ))
+                  )),
             ],
           )),
         ],
